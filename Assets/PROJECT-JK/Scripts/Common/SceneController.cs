@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : SingletonBase<SceneController>
 {
-    public int LastSceneBuildIndex;
-    public void LoadScene(int SceneNumber)
+    public int LastSceneBuildIndex = -1;
+
+    public void SaveScene(int sceneBuildIndex)
+    {
+        LastSceneBuildIndex = sceneBuildIndex;
+    }
+
+    public void LoadScene(int sceneBuildIndex)
     {
         LastSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
 
-        SceneManager.LoadScene(SceneNumber);
+        SceneManager.LoadScene(sceneBuildIndex);
     }
 
     public void LoadScene(string SceneName)

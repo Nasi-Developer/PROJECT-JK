@@ -14,10 +14,13 @@ public class Audio_UI : MonoBehaviour
 
     private void Start()
     {
-        Title_UI.Instance.PlayStartSound += PlayStartSound;
+        if ( Title_UI.Instance != null)
+        {
+            Title_UI.Instance.PlayStartSound += PlayAudio;
+        }
     }
 
-    public void PlayStartSound()
+    public void PlayAudio()
     {
         int index = Random.Range(0, audioClips.Length);
 

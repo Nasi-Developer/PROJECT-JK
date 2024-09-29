@@ -26,6 +26,7 @@ public class Title_UI : MonoBehaviour
     private void Start()
     {
         VideoController.Instance.ShowTouchStartText += ShowTouchText;
+        SceneController.Singleton.SaveScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()
