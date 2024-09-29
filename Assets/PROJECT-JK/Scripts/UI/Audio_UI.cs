@@ -2,29 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Audio_UI : MonoBehaviour
+namespace JK
 {
-    public AudioClip[] audioClips;
-    public AudioSource AudioSource;
 
-    private void Awake()
+    public class Audio_UI : MonoBehaviour
     {
-        AudioSource = GetComponent<AudioSource>();  
-    }
+        public AudioClip[] audioClips;
+        public AudioSource AudioSource;
 
-    private void Start()
-    {
-        if ( Title_UI.Instance != null)
+        private void Awake()
         {
-            Title_UI.Instance.PlayStartSound += PlayAudio;
+            AudioSource = GetComponent<AudioSource>();
         }
-    }
 
-    public void PlayAudio()
-    {
-        int index = Random.Range(0, audioClips.Length);
+        private void Start()
+        {
+            if (Title_UI.Instance != null)
+            {
+                Title_UI.Instance.PlayStartSound += PlayAudio;
+            }
+        }
 
-        AudioSource.clip = audioClips[index];
-        AudioSource.Play();
+        public void PlayAudio()
+        {
+            int index = Random.Range(0, audioClips.Length);
+
+            AudioSource.clip = audioClips[index];
+            AudioSource.Play();
+        }
     }
 }

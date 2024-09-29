@@ -2,56 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : SingletonBase<InputManager>
+namespace JK
 {
-    public Vector2 MoveInput;
-    public Vector2 LookInput;
 
-    public System.Action Attack;
-    public System.Action Jump;
-    public System.Action Roll;
-
-    public bool MouseRight;
-    public bool CrouchKey;
-
-    private void Update()
+    public class InputManager : SingletonBase<InputManager>
     {
-        float Horizontal = Input.GetAxis("Horizontal");
-        float Vertical = Input.GetAxis("Vertical");
-        MoveInput = new Vector2(Horizontal, Vertical);
+        public Vector2 MoveInput;
+        public Vector2 LookInput;
 
-        float MouseX = Input.GetAxis("Mouse X");
-        float MouseY = Input.GetAxis("Mouse Y");
-        LookInput = new Vector2(MouseX, MouseY);
+        public System.Action Attack;
+        public System.Action Jump;
+        public System.Action Roll;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        public bool OnMouseRight;
+        public bool OnCrouchKey;
+        public bool OnSprintKey;
+
+        private void Update()
         {
-            Jump?.Invoke();
-        }
+            float Horizontal = Input.GetAxis("Horizontal");
+            float Vertical = Input.GetAxis("Vertical");
+            MoveInput = new Vector2(Horizontal, Vertical);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack?.Invoke();
-        }
+            float MouseX = Input.GetAxis("Mouse X");
+            float MouseY = Input.GetAxis("Mouse Y");
+            LookInput = new Vector2(MouseX, MouseY);
 
-        if (Input.GetMouseButton(2)) 
-        {
-            MouseRight = true;
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump?.Invoke();
+            }
 
-        else
-        {
-            MouseRight = false;
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Attack?.Invoke();
+            }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CrouchKey = true;
-        }
+            if (Input.GetMouseButton(2))
+            {
+                OnMouseRight = true;
+            }
 
-        else
-        {
-            CrouchKey = false;
+            else
+            {
+                OnMouseRight = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                OnCrouchKey = true;
+            }
+
+            else
+            {
+                OnCrouchKey = false;
+            }
+
         }
     }
 }

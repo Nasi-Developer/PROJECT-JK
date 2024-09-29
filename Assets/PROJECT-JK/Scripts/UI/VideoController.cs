@@ -4,31 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class VideoController : MonoBehaviour
+namespace JK
 {
-    public static VideoController Instance { get; private set; }
-    public VideoPlayer videoPlayer;
-    private float DelayTime = 20f;
-
-    public System.Action ShowTouchStartText;
-
-    private void Awake()
+    public class VideoController : MonoBehaviour
     {
-        videoPlayer = GetComponent<VideoPlayer>();
-        Instance = this;
-    }
+        public static VideoController Instance { get; private set; }
+        public VideoPlayer videoPlayer;
+        private float DelayTime = 20f;
+
+        public System.Action ShowTouchStartText;
+
+        private void Awake()
+        {
+            videoPlayer = GetComponent<VideoPlayer>();
+            Instance = this;
+        }
 
 
-    private void Start()
-    {
-        videoPlayer.Play();
-        StartCoroutine(PlayVideoWait());
-    }
+        private void Start()
+        {
+            videoPlayer.Play();
+            StartCoroutine(PlayVideoWait());
+        }
 
-    IEnumerator PlayVideoWait()
-    {
-        yield return new WaitForSeconds(DelayTime);
+        IEnumerator PlayVideoWait()
+        {
+            yield return new WaitForSeconds(DelayTime);
 
-        ShowTouchStartText?.Invoke();
+            ShowTouchStartText?.Invoke();
+        }
     }
 }

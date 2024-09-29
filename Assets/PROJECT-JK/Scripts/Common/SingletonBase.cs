@@ -7,42 +7,45 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-public class SingletonBase<T> : MonoBehaviour where T : class
+namespace JK
 {
-    public static T Singleton
+    public class SingletonBase<T> : MonoBehaviour where T : class
     {
-        get
+        public static T Singleton
         {
-            return _instance.Value;
-        }
-    }
-
-    private static readonly Lazy<T> _instance =
-        new Lazy<T>(() =>
-        {
-            T instance = FindObjectOfType(typeof(T)) as T;
-
-            if (instance == null)
+            get
             {
-                GameObject obj = new GameObject(typeof(T).ToString());
-                instance = obj.AddComponent(typeof(T)) as T;
-#if UNITY_EDITOR
-                if (EditorApplication.isPlaying)
+                return _instance.Value;
+            }
+        }
+
+        private static readonly Lazy<T> _instance =
+            new Lazy<T>(() =>
+            {
+                T instance = FindObjectOfType(typeof(T)) as T;
+
+                if (instance == null)
                 {
-                    DontDestroyOnLoad(obj);
-                }
+                    GameObject obj = new GameObject(typeof(T).ToString());
+                    instance = obj.AddComponent(typeof(T)) as T;
+#if UNITY_EDITOR
+                    if (EditorApplication.isPlaying)
+                    {
+                        DontDestroyOnLoad(obj);
+                    }
 #else
                    DontDestroyOnLoad(obj);
 #endif
-            }
+                }
 
-            return instance;
-            
+                return instance;
 
-        });
 
-    protected virtual void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+            });
+
+        protected virtual void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

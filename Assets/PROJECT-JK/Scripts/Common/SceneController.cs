@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : SingletonBase<SceneController>
+namespace JK
 {
-    public int LastSceneBuildIndex = -1;
-
-    public void SaveScene(int sceneBuildIndex)
+    public class SceneController : SingletonBase<SceneController>
     {
-        LastSceneBuildIndex = sceneBuildIndex;
-    }
+        public int LastSceneBuildIndex = -1;
 
-    public void LoadScene(int sceneBuildIndex)
-    {
-        LastSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        public void SaveScene(int sceneBuildIndex)
+        {
+            LastSceneBuildIndex = sceneBuildIndex;
+        }
 
-        SceneManager.LoadScene(sceneBuildIndex);
-    }
+        public void LoadScene(int sceneBuildIndex)
+        {
+            LastSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
 
-    public void LoadScene(string SceneName)
-    {
-        LastSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(sceneBuildIndex);
+        }
 
-        SceneManager.LoadScene(SceneName);
+        public void LoadScene(string SceneName)
+        {
+            LastSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+
+            SceneManager.LoadScene(SceneName);
+        }
     }
 }
