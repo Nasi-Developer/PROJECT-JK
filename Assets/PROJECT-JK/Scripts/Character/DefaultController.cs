@@ -24,9 +24,9 @@ namespace JK
 
         private void Update()
         {
-            characterBase.isstrafe = InputManager.Singleton.OnMouseRight;
-            characterBase.issprint = InputManager.Singleton.OnSprintKey;
-            characterBase.iscrouch = InputManager.Singleton.OnCrouchKey;
+            characterBase.IsStrafe = InputManager.Singleton.OnMouseRight;
+            characterBase.IsSprint = InputManager.Singleton.OnSprintKey;
+            characterBase.IsCrouch = InputManager.Singleton.OnCrouchKey;
             characterBase.HorizontalMove(InputManager.Singleton.MoveInput, Camera.main.transform.rotation.eulerAngles.y);
         }
 

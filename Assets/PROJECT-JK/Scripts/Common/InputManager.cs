@@ -38,7 +38,7 @@ namespace JK
                 Attack?.Invoke();
             }
 
-            if (Input.GetMouseButton(2))
+            if (Input.GetMouseButton(2)) 
             {
                 OnMouseRight = true;
             }
@@ -56,6 +56,16 @@ namespace JK
             else
             {
                 OnCrouchKey = false;
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                OnSprintKey = true;
+            }
+
+            else
+            {
+                OnSprintKey= false;
             }
 
         }

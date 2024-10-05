@@ -234,6 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242303220}
+  - component: {fileID: 242303221}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -256,8 +257,23 @@ Transform:
   m_Children:
   - {fileID: 225949806}
   - {fileID: 725542791}
-  m_Father: {fileID: 750561374}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &242303221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242303219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19403582ee795ae4fad40132634690f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layermask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &310237005
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +304,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 750561374}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &310237007
 MonoBehaviour:
@@ -464,8 +480,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1484139416}
-  - {fileID: 310237006}
-  - {fileID: 242303220}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1269096065
@@ -511,7 +525,7 @@ GameObject:
   - component: {fileID: 1484139419}
   - component: {fileID: 1484139418}
   - component: {fileID: 1484139417}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,7 +792,7 @@ Animator:
   m_GameObject: {fileID: 4287312685253989057}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: dd6ec75974b69a3409711f8110698bbb, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 236b2c2a3b8c71447bb07dcfd44645cd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -4387,9 +4401,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9d54d03a8b5c242b75fa297568c272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isstrafe: 0
-  iscrouch: 0
-  issprint: 0
+  characterDefaultData:
+    Level: 0
+    LevelBasedHP: 0
+    LevelBasedAttack: 0
+    LevelBasedArmor: 0
+    LevelBasedAccuracy: 0
+    Ammo: 0
+    FiringRange: 0
+    CostRecovery: 0
+    MovementSpeed: 1
+    AttackSpeed: 0
+    JumpForce: 5
+  IsGrounded: 0
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  VerticalVelocity: 0
 --- !u!114 &4287312685253989059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4421,13 +4449,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.3
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &4287312685253989065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,6 +5555,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1538426042}
+  - {fileID: 310237006}
+  - {fileID: 242303220}
   - {fileID: 750561374}
   - {fileID: 87412569}
   - {fileID: 4287312685253562081}
